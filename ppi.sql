@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 23, 2026 at 02:59 PM
+-- Generation Time: Apr 26, 2026 at 01:09 AM
 -- Server version: 8.4.3
 -- PHP Version: 8.3.16
 
@@ -104,7 +104,49 @@ INSERT INTO `commande` (`id`, `id_client`, `id_produit`, `quantite`, `prix_unita
 (1, 3, 1, 1, 10.00, 'Parking principal', '20021345', '', 'confirmee', '2026-04-23 16:04:15', '2026-04-23 16:06:02'),
 (2, 3, 6, 1, 8.00, 'Département Informatique', '20021345', 'je suis mardi et jeudi et vendredi', 'confirmee', '2026-04-23 16:31:23', '2026-04-23 16:32:00'),
 (3, 3, 7, 1, 8.00, 'Département Informatique', '20021345', 'je suis mardi et jeudi et vendredi', 'confirmee', '2026-04-23 16:31:23', '2026-04-23 16:31:57'),
-(4, 23, 15, 1, 6.50, 'Département Informatique', '26574110', '', 'en_attente', '2026-04-23 16:45:26', NULL);
+(4, 23, 15, 1, 6.50, 'Département Informatique', '26574110', '', 'en_attente', '2026-04-23 16:45:26', NULL),
+(5, 26, 17, 1, 10.00, 'Entrée principale', '55881968', '', 'confirmee', '2026-04-25 21:19:15', '2026-04-25 22:23:09'),
+(6, 26, 10, 1, 25.00, 'Entrée principale', '55881968', '', 'confirmee', '2026-04-25 21:57:46', '2026-04-25 22:20:04');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `commentaire`
+--
+
+CREATE TABLE `commentaire` (
+  `id` int NOT NULL,
+  `id_produit` int NOT NULL,
+  `id_user` int NOT NULL,
+  `contenu` text NOT NULL,
+  `created_at` datetime DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `commentaire`
+--
+
+INSERT INTO `commentaire` (`id`, `id_produit`, `id_user`, `contenu`, `created_at`) VALUES
+(5, 10, 26, 'quel beauté!', '2026-04-26 00:13:15'),
+(6, 15, 26, 'so cute', '2026-04-26 00:19:33');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `demande_vendeur`
+--
+
+CREATE TABLE `demande_vendeur` (
+  `id` int NOT NULL,
+  `id_user` int NOT NULL,
+  `message` text,
+  `statut` enum('en_attente','acceptee','refusee') DEFAULT 'en_attente',
+  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  `nom_complet` varchar(100) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `telephone` varchar(20) DEFAULT NULL,
+  `type_produits` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -123,21 +165,23 @@ CREATE TABLE `favoris` (
 
 INSERT INTO `favoris` (`id_user`, `id_produit`) VALUES
 (3, 1),
-(26, 1),
 (27, 1),
 (27, 2),
 (3, 3),
-(26, 3),
 (27, 3),
+(26, 5),
 (3, 6),
-(26, 9),
 (26, 10),
 (3, 14),
+(26, 14),
+(26, 15),
 (3, 16),
 (26, 16),
 (3, 17),
+(26, 17),
 (26, 18),
-(23, 19);
+(23, 19),
+(26, 19);
 
 -- --------------------------------------------------------
 
@@ -162,7 +206,88 @@ INSERT INTO `message` (`id`, `id_commande`, `id_expediteur`, `contenu`, `lu`, `c
 (1, 1, 23, 'Bonjour , votre commande sera prete dans 3 jours , merci', 1, '2026-04-23 16:13:04'),
 (2, 1, 3, 'Merci inchallah .', 1, '2026-04-23 16:13:54'),
 (3, 1, 23, 'Bonsoir votre commande est prete , on se voit demain a 10h ?', 1, '2026-04-23 16:22:32'),
-(4, 1, 3, 'Bonsoir , oui', 1, '2026-04-23 16:23:22');
+(4, 1, 3, 'Bonsoir , oui', 1, '2026-04-23 16:23:22'),
+(5, 5, 22, 'bonsoir', 1, '2026-04-25 21:20:04'),
+(6, 5, 22, 'hii', 1, '2026-04-25 21:57:16'),
+(7, 5, 26, 'bonsoir', 1, '2026-04-25 21:58:05'),
+(8, 5, 22, '<3', 1, '2026-04-25 21:58:51'),
+(9, 5, 26, 'hiiiiii', 1, '2026-04-25 21:59:41'),
+(10, 6, 26, 'hii', 1, '2026-04-25 22:07:18'),
+(11, 6, 22, 'hiii', 1, '2026-04-25 22:09:47'),
+(12, 6, 26, '<3333', 1, '2026-04-25 22:12:41'),
+(13, 6, 22, '.....', 1, '2026-04-25 22:13:02'),
+(14, 6, 26, '......', 1, '2026-04-25 22:14:40'),
+(15, 6, 26, 'hihi', 1, '2026-04-25 22:16:04'),
+(16, 6, 22, 'hihihihihihi', 1, '2026-04-25 22:16:24'),
+(17, 6, 26, 'winkkkk', 1, '2026-04-25 23:05:41'),
+(18, 6, 22, 'haniii', 1, '2026-04-25 23:05:59'),
+(19, 5, 26, 'hiiii', 1, '2026-04-25 23:09:50'),
+(20, 6, 26, 'aaaaaa', 1, '2026-04-25 23:12:31'),
+(21, 5, 26, 'where are youuuu', 1, '2026-04-25 23:19:17'),
+(22, 6, 26, 'aaaaaa', 1, '2026-04-25 23:20:55'),
+(23, 6, 22, 'aaaa', 1, '2026-04-25 23:23:03'),
+(24, 6, 26, 'ouiiii', 1, '2026-04-25 23:23:22'),
+(25, 5, 26, 'aaaaaa', 1, '2026-04-25 23:55:08'),
+(26, 6, 22, 'aaaaa', 1, '2026-04-25 23:56:01'),
+(27, 6, 26, 'ouiiiii', 1, '2026-04-26 00:00:48'),
+(28, 6, 22, 'aaaaaa', 1, '2026-04-26 00:03:10'),
+(29, 6, 26, 'waaaaa', 1, '2026-04-26 00:05:42');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notification`
+--
+
+CREATE TABLE `notification` (
+  `id` int NOT NULL,
+  `id_user` int NOT NULL,
+  `contenu` text NOT NULL,
+  `lu` tinyint(1) DEFAULT '0',
+  `created_at` datetime DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `notification`
+--
+
+INSERT INTO `notification` (`id`, `id_user`, `contenu`, `lu`, `created_at`) VALUES
+(1, 26, 'Votre commande \"sac en crochet\" a été ✅ confirmée par le vendeur.', 1, '2026-04-25 22:20:04'),
+(2, 26, 'Votre commande \"Porte-lunette\" a été ✅ confirmée par le vendeur.', 1, '2026-04-25 22:23:09'),
+(3, 22, '❤️ safa balloumi a aimé votre produit \"sac en crochet\".', 1, '2026-04-25 22:38:48'),
+(4, 22, '❤️ safa balloumi a aimé votre produit \"sac en crochet\".', 1, '2026-04-25 22:41:39'),
+(5, 22, '❤️ safa balloumi a aimé votre produit \"Porte bijoux\".', 1, '2026-04-25 23:09:21'),
+(6, 22, '❤️ safa balloumi a aimé votre produit \"Porte-lunette\".', 1, '2026-04-25 23:25:16'),
+(7, 22, '❤️ safa balloumi a aimé votre produit \"Sous-tasse\".', 1, '2026-04-25 23:27:57'),
+(8, 22, '❤️ safa balloumi a aimé votre produit \"Porte-lunette\".', 1, '2026-04-25 23:30:26'),
+(9, 22, '❤️ safa balloumi a aimé votre produit \"Sous-tasse\".', 1, '2026-04-25 23:32:16'),
+(10, 22, '❤️ safa balloumi a aimé votre produit \"Porte-monnaie\".', 1, '2026-04-25 23:33:27'),
+(11, 22, '❤️ safa balloumi a aimé votre produit \"Porte-écouteurs\".', 1, '2026-04-25 23:35:45'),
+(12, 22, '❤️ safa balloumi a aimé votre produit \"Porte-écouteurs\".', 1, '2026-04-25 23:38:05'),
+(13, 22, '❤️ safa balloumi a aimé votre produit \"Porte-écouteurs\".', 1, '2026-04-25 23:39:25'),
+(14, 22, '❤️ safa balloumi a aimé votre produit \"Porte-écouteurs\".', 1, '2026-04-25 23:41:11'),
+(15, 22, '❤️ safa balloumi a aimé votre produit \"Porte bijoux\".', 1, '2026-04-25 23:42:38'),
+(16, 22, '❤️ safa balloumi a aimé votre produit \"Porte-monnaie\".', 1, '2026-04-25 23:45:12'),
+(17, 22, '❤️ safa balloumi a aimé votre produit \"Porte bijoux\".', 1, '2026-04-25 23:46:40'),
+(18, 22, '❤️ safa balloumi a aimé votre produit \"sac en crochet\".', 1, '2026-04-25 23:49:07'),
+(19, 22, '❤️ safa balloumi a aimé votre produit \"Porte-monnaie\".', 1, '2026-04-25 23:51:12'),
+(20, 22, '❤️ safa balloumi a aimé votre produit \"Porte bijoux\".', 1, '2026-04-25 23:54:14'),
+(21, 22, '💬 safa balloumi a commenté votre produit \"sac en crochet\" : \"beauté\"', 1, '2026-04-26 00:13:05'),
+(22, 22, '💬 safa balloumi a commenté votre produit \"sac en crochet\" : \"quel beauté\"', 1, '2026-04-26 00:13:10'),
+(23, 22, '💬 safa balloumi a commenté votre produit \"sac en crochet\" : \"quel beauté!\"', 1, '2026-04-26 00:13:15'),
+(24, 22, '💬 safa balloumi a commenté votre produit \"Porte-monnaie\" : \"so cute\"', 1, '2026-04-26 00:19:33');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `panier`
+--
+
+CREATE TABLE `panier` (
+  `id_user` int NOT NULL,
+  `id_produit` int NOT NULL,
+  `quantite` int NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -190,25 +315,25 @@ CREATE TABLE `produit` (
 --
 
 INSERT INTO `produit` (`id`, `libelle`, `prix`, `quantite`, `image`, `description`, `promo`, `prix_promo`, `id_proprietaire`, `id_categorie`, `handmade`, `nb_likes`) VALUES
-(1, 'Set bracelets', 10.00, 3, 'uploads/img_69e2342bbf542.PNG', 'Set de 4 bracelets roses, élégants et faciles à assortir pour un look féminin au quotidien.', 0, NULL, 23, 4, 1, 4),
+(1, 'Set bracelets', 10.00, 3, 'uploads/img_69e2342bbf542.PNG', 'Set de 4 bracelets roses, élégants et faciles à assortir pour un look féminin au quotidien.', 0, NULL, 23, 4, 1, 3),
 (2, 'Set bracelets', 8.00, 3, 'uploads/img_69e2345cea4f7.PNG', 'Set de 3 bracelets bleux , élégants et faciles à assortir pour un look féminin au quotidien.', 0, NULL, 23, 4, 1, 1),
 (3, 'Set bracelets', 14.99, 6, 'uploads/img_69e234c9b7eda.PNG', 'Set de 6 bracelets multicolors , élégants et faciles à assortir pour un look féminin au quotidien.', 1, 12.00, 23, 4, 1, 4),
 (4, 'Set bracelets', 7.00, 2, 'uploads/img_69e2352b0de9e.PNG', 'Set de 2 bracelets roses, élégants et faciles à assortir pour un look féminin au quotidien.', 0, NULL, 23, 4, 1, 0),
-(5, 'Phone Charm', 8.00, 3, 'uploads/img_69e2360150bf8.jpg', 'Bijou de téléphone tendance pour personnaliser votre smartphone avec style.', 0, NULL, 23, 9, 1, 0),
+(5, 'Phone Charm', 8.00, 3, 'uploads/img_69e2360150bf8.jpg', 'Bijou de téléphone tendance pour personnaliser votre smartphone avec style.', 0, NULL, 23, 9, 1, 1),
 (6, 'Phone Charm', 8.00, 4, 'uploads/img_69e2361958e39.jpg', 'Bijou de téléphone tendance pour personnaliser votre smartphone avec style.', 0, NULL, 23, 9, 1, 1),
 (7, 'Phone Charm', 8.00, 0, 'uploads/img_69e2363052387.jpg', 'Bijou de téléphone tendance pour personnaliser votre smartphone avec style.', 0, NULL, 23, 9, 1, 0),
-(8, 'Phone Charm', 8.00, 0, 'uploads/img_69e2364ed037b.PNG', 'Bijou de téléphone tendance pour personnaliser votre smartphone avec style.', 0, NULL, 23, 9, 1, 1),
-(9, 'sac en crochet', 23.00, 2, 'uploads/img_69e23936b54c5.PNG', 'Sac en crochet fait main, léger et tendance, parfait pour un look naturel et élégant au quotidien.', 0, NULL, 22, 33, 1, 1),
-(10, 'sac en crochet', 28.00, 2, 'uploads/img_69e2395551501.PNG', 'Sac en crochet fait main, léger et tendance, parfait pour un look naturel et élégant au quotidien.', 1, 25.00, 22, 33, 0, 1),
+(8, 'Phone Charm', 8.00, 0, 'uploads/img_69e2364ed037b.PNG', 'Bijou de téléphone tendance pour personnaliser votre smartphone avec style.', 0, NULL, 23, 9, 1, 2),
+(9, 'sac en crochet', 23.00, 2, 'uploads/img_69e23936b54c5.PNG', 'Sac en crochet fait main, léger et tendance, parfait pour un look naturel et élégant au quotidien.', 0, NULL, 22, 33, 1, 0),
+(10, 'sac en crochet', 28.00, 1, 'uploads/img_69e2395551501.PNG', 'Sac en crochet fait main, léger et tendance, parfait pour un look naturel et élégant au quotidien.', 1, 25.00, 22, 33, 0, 2),
 (11, 'sac en crochet', 20.98, 2, 'uploads/img_69e23973231c5.PNG', 'Sac en crochet fait main, léger et tendance, parfait pour un look naturel et élégant au quotidien.', 0, NULL, 22, 33, 1, 1),
 (12, 'sac en crochet', 18.00, 1, 'uploads/img_69e239af48e50.jpg', 'Sac en crochet fait main, léger et tendance, parfait pour un look naturel et élégant au quotidien.', 0, NULL, 22, 33, 1, 0),
 (13, 'Porte montre', 8.00, 3, 'uploads/img_69e23a001b32e.jpg', 'Porte-montre élégant pour ranger et protéger votre montre avec style.', 0, NULL, 22, 37, 0, 0),
-(14, 'Porte bijoux', 8.00, 3, 'uploads/img_69e23a2cc691c.PNG', 'Porte-bijouxélégant pour ranger et protéger votre bijoux avec style.', 0, NULL, 22, 37, 1, 1),
-(15, 'Porte-monnaie', 8.00, 2, 'uploads/img_69e23a6aa5ade.PNG', 'Porte-montnaie élégant pour ranger et protéger votre monnaie avec style.', 1, 6.50, 22, 37, 0, 0),
+(14, 'Porte bijoux', 8.00, 3, 'uploads/img_69e23a2cc691c.PNG', 'Porte-bijouxélégant pour ranger et protéger votre bijoux avec style.', 0, NULL, 22, 37, 1, 2),
+(15, 'Porte-monnaie', 8.00, 2, 'uploads/img_69e23a6aa5ade.PNG', 'Porte-montnaie élégant pour ranger et protéger votre monnaie avec style.', 1, 6.50, 22, 37, 0, 1),
 (16, 'Porte-écouteurs', 8.00, 3, 'uploads/img_69e23aa3d6221.PNG', 'Porte-écouteurs élégant pour ranger et protéger votre écouteur avec style.', 0, NULL, 22, 37, 1, 2),
-(17, 'Porte-lunette', 10.00, 3, 'uploads/img_69e23af43fa5c.PNG', 'Porte-lunette élégant pour ranger et protéger votre lunette avec style.', 0, NULL, 22, 37, 1, 2),
+(17, 'Porte-lunette', 10.00, 2, 'uploads/img_69e23af43fa5c.PNG', 'Porte-lunette élégant pour ranger et protéger votre lunette avec style.', 0, NULL, 22, 37, 1, 3),
 (18, 'Sous-tasse', 5.00, 10, 'uploads/img_69e23b3bc5a0e.PNG', 'Sous-tasse élégante pour protéger vos surfaces et apporter une touche décorative à votre table.', 0, NULL, 22, 36, 1, 1),
-(19, 'Sous-tasse', 5.00, 5, 'uploads/img_69e23b5c2512c.PNG', 'Sous-tasse élégante pour protéger vos surfaces et apporter une touche décorative à votre table.', 0, NULL, 22, 36, 1, 1);
+(19, 'Sous-tasse', 5.00, 5, 'uploads/img_69e23b5c2512c.PNG', 'Sous-tasse élégante pour protéger vos surfaces et apporter une touche décorative à votre table.', 0, NULL, 22, 36, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -224,23 +349,24 @@ CREATE TABLE `user` (
   `adresse` varchar(255) NOT NULL,
   `email` varchar(100) NOT NULL,
   `mot_de_passe` varchar(225) NOT NULL,
-  `role` enum('admin','client','supadm') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
+  `role` enum('admin','client','supadm') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `photo` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `nom`, `prenom`, `tel`, `adresse`, `email`, `mot_de_passe`, `role`) VALUES
-(1, 'Ben Hmida', 'Malek', '26574110', 'Rades', 'malkebenhmida@gmail.com', 'malek_bh_2005', 'supadm'),
-(3, 'Gharbi ', 'Jihene ', '20021345', 'Sidi Rzuig ', 'jihengharbi@gmail.com', 'jihen_jihen123', 'client'),
-(4, 'Trabelsi', 'Imed', '26574222', 'Ariana', 'imedtrabelsi@gmail.com', 'imed_imed23', 'admin'),
-(22, 'balloumi', 'safa', '55881968', 'omrane', 'safeballoumi@gmail.com', 'safsoufa1', 'admin'),
-(23, 'Ben Hmida', 'Malek', '26574110', 'Radés', 'malekbenhmida@gmail.com', 'malek_bh_2005', 'admin'),
-(26, 'balloumi', 'safa', '55881968', 'المنار 2', 'safeballoumi263@gmail.com', 'safa123', 'client'),
-(27, 'ben allem', 'karim', '23698745', '16 rue 45612', 'karim@gmail.com', 'karim123', 'client'),
-(28, 'jjjjjjjjj', 'ddd', '95586502', 'dd', 'dd@gmail.com', 'oumaouma1', 'client'),
-(29, 'zaghdoudi', 'takwa', '50920320', 'nouvelle medine 3', 'zaghdoudi.takwaa@gmail.com', 'toutou50', 'client');
+INSERT INTO `user` (`id`, `nom`, `prenom`, `tel`, `adresse`, `email`, `mot_de_passe`, `role`, `photo`) VALUES
+(1, 'Ben Hmida', 'Malek', '26574110', 'Rades', 'malkebenhmida@gmail.com', 'malek_bh_2005', 'supadm', NULL),
+(3, 'Gharbi ', 'Jihene ', '20021345', 'Sidi Rzuig ', 'jihengharbi@gmail.com', 'jihen_jihen123', 'client', NULL),
+(4, 'Trabelsi', 'Imed', '26574222', 'Ariana', 'imedtrabelsi@gmail.com', 'imed_imed23', 'admin', NULL),
+(22, 'balloumi', 'safa', '55881968', 'omrane', 'safeballoumi@gmail.com', 'safsoufa1', 'admin', 'uploads/profil_22.png'),
+(23, 'Ben Hmida', 'Malek', '26574110', 'Radés', 'malekbenhmida@gmail.com', 'malek_bh_2005', 'admin', NULL),
+(26, 'balloumi', 'safa', '55881968', 'المنار 2', 'safeballoumi263@gmail.com', 'safa123', 'client', 'uploads/profil_26.jpg'),
+(27, 'ben allem', 'karim', '23698745', '16 rue 45612', 'karim@gmail.com', 'karim123', 'client', NULL),
+(28, 'jjjjjjjjj', 'ddd', '95586502', 'dd', 'dd@gmail.com', 'oumaouma1', 'client', NULL),
+(29, 'zaghdoudi', 'takwa', '50920320', 'nouvelle medine 3', 'zaghdoudi.takwaa@gmail.com', 'toutou50', 'client', NULL);
 
 --
 -- Indexes for dumped tables
@@ -262,6 +388,21 @@ ALTER TABLE `commande`
   ADD KEY `id_produit` (`id_produit`);
 
 --
+-- Indexes for table `commentaire`
+--
+ALTER TABLE `commentaire`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_produit` (`id_produit`),
+  ADD KEY `id_user` (`id_user`);
+
+--
+-- Indexes for table `demande_vendeur`
+--
+ALTER TABLE `demande_vendeur`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_user` (`id_user`);
+
+--
 -- Indexes for table `favoris`
 --
 ALTER TABLE `favoris`
@@ -275,6 +416,20 @@ ALTER TABLE `message`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_commande` (`id_commande`),
   ADD KEY `id_expediteur` (`id_expediteur`);
+
+--
+-- Indexes for table `notification`
+--
+ALTER TABLE `notification`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_user` (`id_user`);
+
+--
+-- Indexes for table `panier`
+--
+ALTER TABLE `panier`
+  ADD PRIMARY KEY (`id_user`,`id_produit`),
+  ADD KEY `id_produit` (`id_produit`);
 
 --
 -- Indexes for table `produit`
@@ -304,13 +459,31 @@ ALTER TABLE `categorie`
 -- AUTO_INCREMENT for table `commande`
 --
 ALTER TABLE `commande`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `commentaire`
+--
+ALTER TABLE `commentaire`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `demande_vendeur`
+--
+ALTER TABLE `demande_vendeur`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `message`
 --
 ALTER TABLE `message`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+
+--
+-- AUTO_INCREMENT for table `notification`
+--
+ALTER TABLE `notification`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `produit`
@@ -342,6 +515,19 @@ ALTER TABLE `commande`
   ADD CONSTRAINT `commande_ibfk_2` FOREIGN KEY (`id_produit`) REFERENCES `produit` (`id`) ON DELETE CASCADE;
 
 --
+-- Constraints for table `commentaire`
+--
+ALTER TABLE `commentaire`
+  ADD CONSTRAINT `commentaire_ibfk_1` FOREIGN KEY (`id_produit`) REFERENCES `produit` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `commentaire_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `demande_vendeur`
+--
+ALTER TABLE `demande_vendeur`
+  ADD CONSTRAINT `demande_vendeur_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`) ON DELETE CASCADE;
+
+--
 -- Constraints for table `favoris`
 --
 ALTER TABLE `favoris`
@@ -354,6 +540,19 @@ ALTER TABLE `favoris`
 ALTER TABLE `message`
   ADD CONSTRAINT `message_ibfk_1` FOREIGN KEY (`id_commande`) REFERENCES `commande` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `message_ibfk_2` FOREIGN KEY (`id_expediteur`) REFERENCES `user` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `notification`
+--
+ALTER TABLE `notification`
+  ADD CONSTRAINT `notification_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `panier`
+--
+ALTER TABLE `panier`
+  ADD CONSTRAINT `panier_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `panier_ibfk_2` FOREIGN KEY (`id_produit`) REFERENCES `produit` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `produit`
