@@ -84,3 +84,5 @@ $est_favori = isset($_SESSION['user_id']) && in_array($p['id'], $GLOBALS['_favor
 
 
 
+
+

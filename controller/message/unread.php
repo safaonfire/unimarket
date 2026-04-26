@@ -61,3 +61,4 @@ echo json_encode([
     'counts'           => $counts,
     'details'          => $details,
 ]);
+

@@ -28,3 +28,4 @@ $pdo->prepare("INSERT INTO demande_vendeur (id_user, message, nom_complet, email
     ->execute([$user_id, $message, $nom_complet, $email, $telephone, $type_produits]);
 
 header("Location: /controller/home.php?demande=sent"); exit;
+

@@ -95,3 +95,4 @@ if (isset($_POST['action']) && $_POST['action'] === 'vider') {
     header("Location: /controller/panier/voir.php");
     exit;
 }
+

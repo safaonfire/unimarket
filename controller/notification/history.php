@@ -11,3 +11,4 @@ $stmt->execute([$_SESSION['user_id']]);
 $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 echo json_encode($items);
+

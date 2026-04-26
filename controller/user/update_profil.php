@@ -59,3 +59,4 @@ $_SESSION['user_email']  = $email;
 
 header("Location: " . ($_SERVER['HTTP_REFERER'] ?? '/controller/home.php') . "?profil_ok=1");
 exit;
+

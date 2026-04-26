@@ -77,3 +77,4 @@ class CRUD_user {
     }
 }
 ?>
+

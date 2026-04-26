@@ -87,7 +87,7 @@ if (!isset($nb_notifications)) {
         </a>
 
         <!-- Avatar + menu -->
-        <?php $vendeur_photo = !empty($_SESSION['user_photo']) ? '/' . $_SESSION['user_photo'] : '/assets/leaf.png'; ?>
+        <?php $vendeur_photo = !empty($_SESSION['user_photo']) ? '/' . $_SESSION['user_photo'] : '/assets/logo.avif'; ?>
         <div style="position:relative;">
             <img src="<?= $vendeur_photo ?>" id="vendeurLogoBtn"
                  style="width:34px; height:34px; border-radius:50%; object-fit:cover; cursor:pointer;">
@@ -245,7 +245,7 @@ function previewImageVendeur(input) {
 }
 
 function supprimerPhotoVendeur() {
-    const def = '/assets/leaf.png';
+    const def = '/assets/logo.avif';
     document.getElementById('previewPhotoVendeur').src = def;
     document.getElementById('vendeurLogoBtn').src = def;
     document.getElementById('vendeurAvatarMenu').src = def;
@@ -254,6 +254,8 @@ function supprimerPhotoVendeur() {
 }
 </script>
 <script src="/assets/chat.js"></script>
+
+
 
 
 

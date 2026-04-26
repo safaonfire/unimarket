@@ -95,3 +95,4 @@ function ajouterPanier(id_produit, btn) {
             }
         });
 }
+

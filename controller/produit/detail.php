@@ -16,3 +16,4 @@ if (!$produit) {
 }
 
 include __DIR__ . "/../../view/produit/detail.php";
+

@@ -37,3 +37,4 @@ if ($action === 'accepter') {
 }
 
 header("Location: /controller/admin/dashboard.php?section=demandes"); exit;
+

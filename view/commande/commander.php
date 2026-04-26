@@ -26,7 +26,6 @@ $prix_final = ($produit['promo'] && !empty($produit['prix_promo'])) ? $produit['
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/assets/leaf.png" rel="icon" type="image/png">
     <title>Commander — <?= htmlspecialchars($produit['libelle']) ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
@@ -134,6 +133,8 @@ document.getElementById('quantite').addEventListener('input', function() {
 </script>
 </body>
 </html>
+
+
 
 
 

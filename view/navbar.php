@@ -113,7 +113,7 @@ body { padding-top: 70px; }
         <div class="account-dropdown" id="accountDropdown">
             <div class="account-trigger">
                 <?php if (isset($_SESSION['user_id'])): ?>
-                    <?php $photo_src = !empty($_SESSION['user_photo']) ? '/' . $_SESSION['user_photo'] : '/assets/leaf.png'; ?>
+                    <?php $photo_src = !empty($_SESSION['user_photo']) ? '/' . $_SESSION['user_photo'] : '/assets/logo.avif'; ?>
                     <div class="position-relative d-inline-block">
                         <img src="<?= $photo_src ?>" alt="profil" id="navProfilImg" style="width:32px; height:32px; border-radius:50%; object-fit:cover; cursor:pointer;">
                         <span id="navNotifBadge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
@@ -383,7 +383,7 @@ function previewImage(input) {
 }
 
 function supprimerPhoto() {
-    const defaultSrc = '/assets/leaf.png';
+    const defaultSrc = '/assets/logo.avif';
     document.getElementById('previewPhoto').src = defaultSrc;
     document.getElementById('navProfilImg').src = defaultSrc;
     document.getElementById('deletePhotoInput').value = '1';
@@ -409,7 +409,7 @@ function supprimerPhoto() {
             <form method="POST" action="/controller/user/update_profil.php" enctype="multipart/form-data">
                 <div class="modal-body">
                     <?php if (!empty($_GET['profil_ok'])): ?>
-                        <div class="alert alert-success py-2">Profil mis à jour !</div>
+                        <div class="alert alert-success py-2" id="profilSuccessMsg">Profil mis à jour !</div>
                     <?php elseif (!empty($_GET['profil_error'])): ?>
                         <div class="alert alert-danger py-2">
                             <?= $_GET['profil_error'] === 'email' ? 'Cet email est déjà utilisé.' : 'Veuillez remplir tous les champs.' ?>
@@ -474,10 +474,21 @@ function supprimerPhoto() {
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         new bootstrap.Modal(document.getElementById('modalProfil')).show();
+        // Clean URL
+        const url = new URL(window.location.href);
+        url.searchParams.delete('profil_ok');
+        window.history.replaceState({}, '', url);
+        // Auto-hide message after 3s
+        setTimeout(() => {
+            const msg = document.getElementById('profilSuccessMsg');
+            if (msg) msg.style.display = 'none';
+        }, 3000);
     });
 </script>
 <?php endif; ?>
 <?php endif; ?>
+
+
 
 
 

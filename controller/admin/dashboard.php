@@ -31,3 +31,4 @@ $demandes = $stmt->fetchAll();
 $section = isset($_GET['section']) ? $_GET['section'] : 'produits';
 
 include __DIR__ . "/../../view/admin/dashboard.php";
+

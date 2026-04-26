@@ -8,3 +8,4 @@ $pdo = (new Connexion())->getConnexion();
 $pdo->prepare("UPDATE notification SET lu = 1 WHERE id_user = ?")->execute([$_SESSION['user_id']]);
 
 echo json_encode(['success' => true]);
+

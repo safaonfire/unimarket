@@ -49,3 +49,4 @@ if ($info) {
 
 header("Location: /controller/vendeur/commandes.php");
 exit;
+

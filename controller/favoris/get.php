@@ -16,3 +16,4 @@ $ids = $stmt->fetchAll(PDO::FETCH_COLUMN);
 $_SESSION['favoris'] = $ids;
 
 echo json_encode($ids);
+

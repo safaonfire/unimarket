@@ -48,3 +48,4 @@ if (isset($_POST['ok'])) {
 }
 
 include __DIR__ . "/../../view/admin/add_produit.php";
+

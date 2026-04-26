@@ -12,3 +12,4 @@ $pdo->prepare("DELETE FROM commentaire WHERE id = ? AND id_user = ?")
     ->execute([$id, $_SESSION['user_id']]);
 
 echo json_encode(['success' => true]);
+

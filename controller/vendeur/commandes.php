@@ -12,3 +12,4 @@ $crud = new CRUD_commande();
 $commandes = $crud->getCommandesByVendeur($_SESSION['user_id']);
 
 require_once __DIR__ . '/../../view/vendeur/commandes.php';
+

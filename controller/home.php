@@ -13,3 +13,4 @@ if (!empty($_GET['categorie']) && is_numeric($_GET['categorie'])) {
 }
 
 include __DIR__ . "/../view/unimarket.php";
+

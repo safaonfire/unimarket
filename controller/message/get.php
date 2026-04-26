@@ -33,7 +33,7 @@ $pdo->prepare("UPDATE message SET lu = 1 WHERE id_commande = ? AND id_expediteur
 
 // Récupérer les messages
 $stmt = $pdo->prepare("
-    SELECT m.*, u.nom, u.prenom
+    SELECT m.*, u.nom, u.prenom, u.photo
     FROM message m
     JOIN user u ON m.id_expediteur = u.id
     WHERE m.id_commande = ?
@@ -47,6 +47,7 @@ $result = array_map(function($m) use ($user_id) {
         'id'         => $m['id'],
         'contenu'    => htmlspecialchars($m['contenu']),
         'expediteur' => htmlspecialchars($m['nom'] . ' ' . $m['prenom']),
+        'photo'      => !empty($m['photo']) ? '/' . $m['photo'] : '/assets/logo.avif',
         'moi'        => $m['id_expediteur'] == $user_id,
         'heure'      => date('H:i', strtotime($m['created_at'])),
         'date'       => date('d/m/Y', strtotime($m['created_at'])),
@@ -54,3 +55,4 @@ $result = array_map(function($m) use ($user_id) {
 }, $messages);
 
 echo json_encode($result);
+

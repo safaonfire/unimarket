@@ -46,3 +46,4 @@ if (isset($_POST['ok'])) {
 }
 
 include __DIR__ . "/../../view/vendeur/add_produit.php";
+

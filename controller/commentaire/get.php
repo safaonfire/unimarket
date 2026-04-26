@@ -20,8 +20,9 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 echo json_encode(array_map(fn($r) => [
     'id'       => $r['id'],
     'nom'      => htmlspecialchars($r['prenom'] . ' ' . $r['nom']),
-    'photo'    => $r['photo'] ? '/' . $r['photo'] : '/assets/leaf.png',
+    'photo'    => $r['photo'] ? '/' . $r['photo'] : '/assets/logo.avif',
     'contenu'  => htmlspecialchars($r['contenu']),
     'date'     => date('d/m/Y à H:i', strtotime($r['created_at'])),
     'est_moi'  => (bool)$r['est_moi'],
 ], $rows));
+

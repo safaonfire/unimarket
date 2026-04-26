@@ -12,3 +12,4 @@ if (!empty($_SESSION['favoris'])) {
 }
 
 include __DIR__ . '/../../view/favoris.php';
+

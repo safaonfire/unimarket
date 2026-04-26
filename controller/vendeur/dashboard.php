@@ -11,3 +11,4 @@ $crud = new CRUD_produit();
 $produits = $crud->getByProprietaire($_SESSION['user_id']);
 
 include __DIR__ . "/../../view/vendeur/dashboard.php";
+

@@ -12,3 +12,4 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Don't mark as read here — only mark read when user explicitly opens the panel
 echo json_encode(['count' => count($items), 'items' => $items]);
+

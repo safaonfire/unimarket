@@ -15,3 +15,4 @@ if (!empty($_SESSION['user_id']) && !empty($_SESSION['panier'])) {
 session_destroy();
 header("Location: ../../view/unimarket.php");
 exit();
+

@@ -51,3 +51,4 @@ $stmt->execute([$id_produit]);
 $row = $stmt->fetch();
 
 echo json_encode(['status' => $status, 'nb_likes' => (int)$row['nb_likes']]);
+

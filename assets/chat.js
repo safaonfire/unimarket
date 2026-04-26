@@ -64,14 +64,28 @@ function pollMessages(id_commande) {
 }
 
 function bulleMessage(m) {
-    const align = m.moi ? 'flex-end' : 'flex-start';
     const bg = m.moi ? '#1a1a1a' : '#f0f0f0';
     const color = m.moi ? '#fff' : '#1a1a1a';
     const nom = m.moi ? 'Vous' : m.expediteur;
-    return `<div style="display:flex;flex-direction:column;align-items:${align};max-width:80%;align-self:${align};">
-        <div style="font-size:11px;color:#999;margin-bottom:2px;">${nom} · ${m.heure}</div>
-        <div style="background:${bg};color:${color};padding:8px 12px;border-radius:12px;font-size:13px;word-break:break-word;">${m.contenu}</div>
-    </div>`;
+    const photo = m.photo || '/assets/logo.avif';
+
+    if (m.moi) {
+        return `<div style="display:flex;flex-direction:row;align-items:flex-end;justify-content:flex-end;gap:8px;max-width:80%;align-self:flex-end;">
+            <div style="display:flex;flex-direction:column;align-items:flex-end;">
+                <div style="font-size:11px;color:#999;margin-bottom:2px;">${nom} · ${m.heure}</div>
+                <div style="background:${bg};color:${color};padding:8px 12px;border-radius:18px 18px 4px 18px;font-size:13px;word-break:break-word;">${m.contenu}</div>
+            </div>
+            <img src="${photo}" style="width:28px;height:28px;border-radius:50%;object-fit:cover;flex-shrink:0;">
+        </div>`;
+    } else {
+        return `<div style="display:flex;flex-direction:row;align-items:flex-end;gap:8px;max-width:80%;align-self:flex-start;">
+            <img src="${photo}" style="width:28px;height:28px;border-radius:50%;object-fit:cover;flex-shrink:0;">
+            <div style="display:flex;flex-direction:column;align-items:flex-start;">
+                <div style="font-size:11px;color:#999;margin-bottom:2px;">${nom} · ${m.heure}</div>
+                <div style="background:${bg};color:${color};padding:8px 12px;border-radius:18px 18px 18px 4px;font-size:13px;word-break:break-word;">${m.contenu}</div>
+            </div>
+        </div>`;
+    }
 }
 
 function envoyerMessage(id_commande) {
@@ -271,3 +285,4 @@ document.addEventListener('DOMContentLoaded', function () {
 
 verifierNotifications();
 setInterval(verifierNotifications, 15000);
+

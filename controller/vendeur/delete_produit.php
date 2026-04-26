@@ -17,3 +17,4 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 
 header("Location: /controller/vendeur/dashboard.php");
 exit();
+

@@ -21,3 +21,4 @@ foreach ($_SESSION['panier'] as $id_produit => $quantite) {
 }
 
 include __DIR__ . '/../../view/panier.php';
+

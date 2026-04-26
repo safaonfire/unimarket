@@ -28,3 +28,4 @@ $commandes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // send data to view
 require_once __DIR__ . '/../../view/mes_commandes.php';
+

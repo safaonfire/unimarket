@@ -16,3 +16,4 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 $redirect = isset($_GET['from']) ? $_GET['from'] : 'vendeurs';
 header("Location: /controller/admin/dashboard.php?section=" . $redirect);
 exit();
+

@@ -36,3 +36,4 @@ echo json_encode([
     'contenu'  => htmlspecialchars($contenu),
     'date'     => date('d/m/Y à H:i'),
 ]);
+

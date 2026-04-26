@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/assets/leaf.png" rel="icon" type="image/png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Connexion - UniMarket</title>
+    <link rel="icon" type="image/png" href="/assets/leaf.png">
     <style>
         body {
             padding-top: 100px;
@@ -58,6 +58,8 @@
     </script>
 </body>
 </html>
+
+
 
 
 
